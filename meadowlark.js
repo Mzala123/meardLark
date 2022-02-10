@@ -8,6 +8,11 @@ const port = process.env.PORT ||  3000
 
 const hbs = expressHandlebars.create({
     helpers: {
+        section: function(name, options){
+            if(!this._sections) this._sections = {}
+            this._sections[name] = options.fn(this)
+            return null
+        }
     },
     defaultLayout: 'main'
 })
